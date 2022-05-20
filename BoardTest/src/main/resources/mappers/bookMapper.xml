@@ -11,8 +11,10 @@
 
 	<select id="selectDetail" parameterType="hashMap"
 		resultType="hashMap">
-		select title, category, price
+		<![CDATA[
+		select title, category, price, insert_date
 		from tbl_book
-		where book_id = #{book_id}
+		where book_id = #{book_id,jdbcType=NUMERIC}
+		]]>
 	</select>
 </mapper>
