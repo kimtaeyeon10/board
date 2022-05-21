@@ -1,5 +1,6 @@
 package com.test.kim;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,16 +41,29 @@ public class BookController {
 	
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public ModelAndView detail(@RequestParam Map<String, Object> map) {
-		Map<String,Object> detailMap = this.bookService.detail(map); //db에서 조회한내용 detailMap담기 
-		
+		Map<String,Object> detailMap = this.bookService.detail(map.get("bookId")); //db에서 조회한내용 detailMap담기 
+		System.out.println("detailMap"+detailMap);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("data",detailMap); // data라는 이름으로 쿼리결과 담음
+		System.out.println("mav"+mav);
 		
 		String bookId = map.get("bookId").toString();
 		mav.addObject("bookId",bookId);
-		
+		System.out.println("bookId"+bookId);
 		mav.setViewName("/book/detail");
 		return mav;
+	}
+	
+	@RequestMapping(value="list")
+	public ModelAndView list(@RequestParam Map<String,Object> map) {
+		List<Map<String,Object>> list = this.bookService.list(map);
+		System.out.println(map.get("title"));
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("data",list);
+		mav.setViewName("/book/list");
+		return mav;
+		
+		
 	}
 	
 }

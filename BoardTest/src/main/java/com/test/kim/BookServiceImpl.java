@@ -1,5 +1,6 @@
 package com.test.kim;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,14 @@ public class BookServiceImpl implements BookService{
 	}
 	
 	@Override
-	public Map<String,Object> detail(Map<String,Object> map){
-		return this.bookDao.selectDetail(map);
+	public Map<String, Object> detail(Object object) {
+		return this.bookDao.selectDetail(object);
 	}
+	
+	@Override
+	public List<Map<String, Object>> list(Map<String,Object>map){
+		return this.bookDao.selectList(map);
+	}
+
+
 }

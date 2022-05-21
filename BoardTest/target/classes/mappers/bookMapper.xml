@@ -11,10 +11,15 @@
 
 	<select id="selectDetail" parameterType="hashMap"
 		resultType="hashMap">
-		<![CDATA[
 		select title, category, price, insert_date
 		from tbl_book
 		where book_id = #{book_id,jdbcType=NUMERIC}
-		]]>
+	</select>
+
+	<select id="selectList" parameterType="hashMap"
+		resultType="hashMap">
+		select title, category, price, insert_date
+		from tbl_book
+		order by insert_date desc
 	</select>
 </mapper>

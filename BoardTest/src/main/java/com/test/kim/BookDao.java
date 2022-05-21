@@ -1,4 +1,5 @@
 package com.test.kim;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,7 +17,17 @@ public class BookDao { //매퍼xml실행시키는 클래스
 		// 쿼리 영향 받은 행 수 반환.. 성공시 1 실패시 0
 	}
 	
-	public Map<String, Object> selectDetail(Map<String,Object> map){
-		return this.sqlSessionTemplate.selectOne("book.selectDetail",map); //selectOne은 데이터를 한개만 가져올 때 사용
+	public Map<String, Object> selectDetail(Object object){
+		return this.sqlSessionTemplate.selectOne("book.selectDetail",object); //selectOne은 데이터를 한개만 가져올 때 사용
 	}
+	
+	public List<Map<String, Object>> selectList(Map<String,Object> map){
+		return this.sqlSessionTemplate.selectList("book.selectList",map);
+	}
+
+
+
 }
+
+
+
